@@ -1,0 +1,52 @@
+# Core
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+scipy
+
+# Forecasting
+prophet
+neuralprophet
+
+# Clustering
+hdbscan
+umap-learn
+
+# NLP
+transformers
+torch
+langdetect
+sentencepiece
+
+# Causal Modeling
+econml
+dowhy
+
+# Explainability
+lime
+
+# API
+fastapi
+uvicorn
+
+# Dashboarding
+streamlit
+plotly
+powerbiclient  # optional for Power BI interaction
+
+# LLMs (Offline if available)
+deepseek-llm  # or mistral from HuggingFace
+openai  # fallback if needed
+
+# Pipeline
+dbt-core
+apache-airflow
+
+# Utilities
+joblib
+python-dotenv
+
+# Testing
+pytest

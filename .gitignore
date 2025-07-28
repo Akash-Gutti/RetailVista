@@ -1,0 +1,81 @@
+# ------------------------
+# Python
+# ------------------------
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints/
+*.pyo
+*.pyd
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.onnx
+
+# Virtual environment
+venv/
+.env
+.env.*
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Logs and debug
+*.log
+logs/
+*.out
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE-specific
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# DBT artifacts
+dbt_pipeline/target/
+dbt_pipeline/dbt_modules/
+dbt_pipeline/.dbt/
+
+# Airflow
+airflow/
+*.airflow/
+**/airflow.db
+**/unittests.cfg
+
+# FastAPI artifacts
+api/__pycache__/
+api/__pycache__/*
+
+# LLM / NLP
+llm_outputs/
+*.jsonl
+*.bin
+
+# Data and reports
+data/interim/
+data/processed/
+data/temp/
+reports/pdf/
+reports/figures/
+*.pdf
+*.pptx
+
+# Large raw files (manual versioning)
+data/raw/*.csv
+data/raw/*.parquet
+data/raw/*.xlsx
+data/raw/*
+!data/raw/.gitkeep
+
+# Streamlit/Gradio artifacts
+.streamlit/
+dashboard/__pycache__/
+
+# Others
+*.bak
+*.tmp
