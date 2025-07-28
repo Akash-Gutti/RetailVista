@@ -31,22 +31,15 @@ lime
 fastapi
 uvicorn
 
-# Dashboarding
+# Dashboards
 streamlit
 plotly
-powerbiclient  # optional for Power BI interaction
+powerbiclient
 
-# LLMs (Offline if available)
-deepseek-llm  # or mistral from HuggingFace
-openai  # fallback if needed
-
-# Pipeline
-dbt-core
-apache-airflow
-
-# Utilities
-joblib
-python-dotenv
-
-# Testing
-pytest
+# Optional (comment out unless used)
+# openai        # Optional fallback for LLMs
+# dbt-core      # Only for Module 10
+# apache-airflow  # Optional: if you use Airflow DAGs
+# python-dotenv  # Optional: if you use .env configs
+# joblib         # For model serialization
+# pytest         # For testing utils
