@@ -72,6 +72,10 @@ data/raw/*.xlsx
 data/raw/*
 !data/raw/.gitkeep
 
+# Model weights
+llm_models/
+.cache/
+
 # Streamlit/Gradio artifacts
 .streamlit/
 dashboard/__pycache__/
