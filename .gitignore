@@ -25,6 +25,7 @@ venv/
 *.log
 logs/
 *.out
+lightning_logs/
 
 # OS-specific
 .DS_Store
