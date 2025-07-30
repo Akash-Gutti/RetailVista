@@ -1,0 +1,27 @@
+Causal Estimate:
+*** Causal Estimate ***
+
+## Identified estimand
+Estimand type: EstimandType.NONPARAMETRIC_ATE
+
+### Estimand : 1
+Estimand name: backdoor
+Estimand expression:
+     d                                  
+────────────(E[purchase|gender,cluster])
+d[treatment]                            
+Estimand assumption 1, Unconfoundedness: If U→{treatment} and U→purchase then P(purchase|treatment,gender,cluster,U) = P(purchase|treatment,gender,cluster)
+
+## Realized estimand
+b: purchase~treatment+gender+cluster
+Target units: ate
+
+## Estimate
+Mean value: 4.7903901869588665
+
+
+Placebo Test:
+Refute: Use a Placebo Treatment
+Estimated effect:4.7903901869588665
+New effect:-0.05324387494227494
+p value:1.0
