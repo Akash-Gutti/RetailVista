@@ -1,0 +1,9 @@
+cluster,gender,country,segment,recency,frequency,monetary,avg_txn_amt,total_points
+Cluster 0,Female,Qatar,Silver,70.1,2.0,350.1,175.1,507.3
+Cluster 1,Female,Qatar,Bronze,37.2,8.1,1170.4,144.0,2117.3
+Cluster 2,Female,Qatar,Gold,38.1,7.0,1100.5,157.2,1824.5
+Cluster 3,Female,KSA,Silver,51.4,6.0,918.3,153.1,1502.7
+Cluster 4,Male,Oman,Gold,61.0,5.0,788.2,157.6,1273.1
+Cluster 5,Female,Qatar,Bronze,75.4,3.0,468.9,156.3,778.4
+Cluster 6,Female,Qatar,Bronze,71.5,4.0,620.2,155.0,1024.0
+Noise,Male,Oman,Bronze,143.1,5.0,766.0,154.3,1261.8
