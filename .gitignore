@@ -83,3 +83,4 @@ dashboard/__pycache__/
 # Others
 *.bak
 *.tmp
+"lightning_logs/" 
