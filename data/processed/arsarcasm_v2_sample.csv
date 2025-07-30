@@ -1,0 +1,6 @@
+tweet,sarcasm,sentiment,dialect
+"""#الاخبار هل الناتو صادق فيما يقول https://t.co/VFi1WxJ7eS #KAMINDOZ""",False,NEU,msa
+"""لو صرخ #الفلسطينون بشعار البرائة لم تجرأت #اسرائيل من منع #الاذان في #القدس.اصرخوا قبل ان يمنعوكم في بلدانكم من رفع الاذان.""",False,NEG,msa
+"""وحشتني أيآمك أوي..مآ تقلي هـو مآ فيش طريقة فيها انساك اوي؟#اليسا https://t.co/gPqUNeCeun""",False,NEU,egypt
+"""RT @IQsunni: مواكب شيعية تحمل صور الهلكى الذين سقطوا في المعارك ضد ""داعش"" https://t.co/7X6FCa1A5T""",False,NEG,msa
+"""تم فك الحظر عن السيد #بوكيمونالظاهر مافي مصاري https://t.co/VawrAeCSxx""",True,NEU,egypt
