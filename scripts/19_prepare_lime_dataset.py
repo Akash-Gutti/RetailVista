@@ -1,43 +1,60 @@
-import pandas as pd
-import numpy as np
-import os
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.ensemble import RandomForestRegressor
-import joblib
+# scripts/19_prepare_lime_dataset.py
 
-# Load uplift predictions
-input_path = "data/processed/uplift_predictions.csv"
+import pandas as pd
+import os
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction.text import TfidfVectorizer
+import lime
+import lime.lime_text
+import matplotlib.pyplot as plt
+
+# Load sentiment predictions
+input_path = "data/processed/labr_qarib_evaluation.csv"
 df = pd.read_csv(input_path)
 
-# Features & target
-categorical = ["gender", "country", "segment"]
-numerical = ["age", "recency", "frequency", "monetary", "avg_txn_amt", "total_points"]
-target = "uplift_score"
+# Use review and predicted sentiment label
+texts = df["review"].astype(str).tolist()
+labels = df["pred_label"].tolist()
 
-# Encode categorical features
-preprocessor = ColumnTransformer(transformers=[
-    ("cat", OneHotEncoder(handle_unknown="ignore"), categorical)
-], remainder='passthrough')
+# Build text classification pipeline
+pipeline = make_pipeline(
+    TfidfVectorizer(max_features=5000),
+    LogisticRegression(max_iter=1000)
+)
+pipeline.fit(texts, labels)
 
-# Pipeline with RandomForestRegressor (can be changed)
-pipeline = Pipeline([
-    ("preprocessor", preprocessor),
-    ("model", RandomForestRegressor(n_estimators=100, random_state=42))
-])
+# Define dynamic class names
+label_set = sorted(df["pred_label"].unique())
+class_names = ["Negative", "Neutral", "Positive"]
+class_map = {i: class_names[i] for i in label_set}
 
-# Fit model
-X = df[categorical + numerical]
-y = df[target]
-pipeline.fit(X, y)
+# Initialize LIME explainer
+explainer = lime.lime_text.LimeTextExplainer(class_names=[class_map[i] for i in label_set])
 
-# Save pipeline
-joblib.dump(pipeline, "models/lime_pipeline.pkl")
+# Output folder
+output_dir = "outputs/lime_sentiment"
+os.makedirs(output_dir, exist_ok=True)
 
-# Sample 50 customers for LIME explanations
-lime_sample = df.sample(n=50, random_state=42)
-lime_sample.to_csv("data/processed/lime_sample.csv", index=False)
+# Explain a few examples from each class
+samples_per_class = 3
+for class_label in label_set:
+    class_df = df[df["pred_label"] == class_label]
+    if len(class_df) == 0:
+        print(f"No samples found for class {class_map[class_label]}. Skipping.")
+        continue
 
-print(f"Pipeline saved to models/lime_pipeline.pkl")
-print(f"LIME sample saved to data/processed/lime_sample.csv")
+    sampled = class_df.sample(n=min(samples_per_class, len(class_df)), random_state=42)
+    for idx, row in sampled.iterrows():
+        review_text = row["review"]
+        try:
+            exp = explainer.explain_instance(review_text, pipeline.predict_proba, num_features=10)
+            fig = exp.as_pyplot_figure()
+            fig.suptitle(f"LIME: Pred = {class_map[class_label]}", fontsize=12)
+            fig.tight_layout()
+            fig.savefig(f"{output_dir}/lime_class{class_label}_sample{idx}.png")
+            plt.close()
+        except Exception as e:
+            print(f"Failed on sample {idx} (class {class_label}): {e}")
+
+print("LIME sentiment explanations saved in outputs/lime_sentiment/")
