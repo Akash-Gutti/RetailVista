@@ -1,0 +1,11 @@
+gender,dialect,negative,neutral,positive
+Female,egypt,474,279,195
+Female,gulf,84,85,44
+Female,levant,92,66,62
+Female,magreb,10,5,2
+Female,msa,747,1667,395
+Male,egypt,466,303,187
+Male,gulf,74,90,37
+Male,levant,88,86,45
+Male,magreb,6,3,2
+Male,msa,772,1678,393
