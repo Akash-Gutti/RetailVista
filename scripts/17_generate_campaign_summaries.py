@@ -7,7 +7,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from huggingface_hub import login
 
 # === CONFIG ===
-HF_TOKEN = "your_hf_token_here"
+HF_TOKEN = "your_huggingface_token_here"  # Replace with your Hugging Face token
 MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
 CLUSTER_CSV = "/workspace/data/cluster_insights_summary.csv"
 UPLIFT_CSV = "/workspace/data/uplift_predictions.csv"
