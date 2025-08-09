@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import os
 import hdbscan
 import joblib
@@ -14,6 +15,10 @@ df = pd.read_csv(input_path)
 
 # Select numeric features
 features = ["recency", "frequency", "monetary", "avg_txn_amt", "total_points"]
+missing = [f for f in features if f not in df.columns]
+if missing:
+    raise ValueError(f"Missing required features in {input_path}: {missing}")
+
 X = df[features].copy()
 
 # Scale features
@@ -22,8 +27,19 @@ X_scaled = scaler.fit_transform(X)
 
 # Train HDBSCAN
 clusterer = hdbscan.HDBSCAN(min_cluster_size=20, prediction_data=True)
-clusterer.fit(X_scaled)
+labels = clusterer.fit_predict(X_scaled)
+
+# Optional: quick visibility (does not write any new CSV)
+noise_ratio = (labels == -1).mean()
+print(f"Trained HDBSCAN. Noise (-1) ratio: {noise_ratio:.2%}")
+
+# -------- Save bundle (for Streamlit & FastAPI inference) --------
+bundle = {
+    "features": features,
+    "scaler": scaler,
+    "clusterer": clusterer
+}
 
 # Save model
-joblib.dump(clusterer, model_output_path)
-print(f"✅ Cluster model saved to: {model_output_path}")
+joblib.dump(bundle, model_output_path)
+print(f"Cluster bundle saved to: {model_output_path}")
