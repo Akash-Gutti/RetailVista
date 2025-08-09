@@ -11,7 +11,7 @@ import hdbscan
 from sklearn.preprocessing import StandardScaler
 
 # ================== Page & Style ==================
-st.set_page_config(page_title="TradeSense Analyst Lab", layout="wide")
+st.set_page_config(page_title="RetailVista Analyst Lab", layout="wide")
 
 CUSTOM_CSS = """
 <style>
@@ -162,7 +162,7 @@ def predict_cluster_from_inputs(inputs: dict):
     return int(labels[0]), float(strengths[0])
 
 # ================== UI ==================
-st.title("TradeSense Analyst Lab")
+st.title("RetailVista Analyst Lab")
 
 # --- Radio-based tab control (works on all Streamlit versions, no jump) ---
 tab_names = [
